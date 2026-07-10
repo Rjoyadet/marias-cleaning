@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maria's Cleaning Co. — Dallas, TX</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #7a9e7e;
+    --sage-light: #e8f0e9;
+    --sage-dark: #3d5c41;
+    --cream: #faf8f3;
+    --warm-white: #fff9f2;
+    --charcoal: #2a2a2a;
+    --muted: #7a7570;
+    --gold: #c9a84c;
+    --gold-light: #f5ead4;
+    --border: rgba(42,42,42,0.12);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--sage-dark);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-logo span { color: var(--gold); font-style: italic; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; color: var(--muted);
+    font-size: 0.875rem; font-weight: 500;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--charcoal); }
+  .nav-cta {
+    background: var(--sage-dark); color: #fff !important;
+    padding: 0.5rem 1.25rem; border-radius: 50px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--sage) !important; color: #fff; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 5% 80px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(122,158,126,0.12) 0%, transparent 70%);
+    border-radius: 50%; pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--gold-light); color: var(--sage-dark);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.35rem 1rem; border-radius: 50px;
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.04em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+  }
+  .hero-badge::before { content: '✦'; color: var(--gold); font-size: 0.7rem; }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 1.25rem;
+  }
+  h1 em { color: var(--sage); font-style: italic; }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 440px; margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--sage-dark); color: #fff;
+    padding: 0.875rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 500;
+    font-size: 0.95rem; transition: all 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--sage); transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--charcoal);
+    padding: 0.875rem 2rem; border-radius: 50px;
+    text-decoration: none; font-weight: 500;
+    font-size: 0.95rem; transition: all 0.2s;
+    border: 1.5px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--sage); color: var(--sage-dark); }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 3rem;
+    padding-top: 2rem; border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.75rem; color: var(--sage-dark); font-weight: 700;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+  /* Hero image panel */
+  .hero-visual {
+    position: relative; border-radius: 24px; overflow: hidden;
+    background: var(--sage-light);
+    min-height: 520px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .hero-visual-inner {
+    width: 100%; height: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0; min-height: 520px;
+  }
+  .visual-card {
+    padding: 2rem;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    position: relative; overflow: hidden;
+  }
+  .vc1 { background: #c8dcc9; }
+  .vc2 { background: var(--sage); }
+  .vc3 { background: var(--gold-light); }
+  .vc4 { background: var(--sage-dark); }
+  .vc-icon {
+    font-size: 2.5rem; margin-bottom: 0.5rem; display: block;
+    filter: none;
+  }
+  .vc-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 0.01em;
+  }
+  .vc1 .vc-label { color: var(--sage-dark); }
+  .vc2 .vc-label { color: #fff; }
+  .vc3 .vc-label { color: var(--sage-dark); }
+  .vc4 .vc-label { color: #fff; }
+  .vc-sub { font-size: 0.75rem; opacity: 0.75; margin-top: 2px; }
+  .vc1 .vc-sub, .vc3 .vc-sub { color: var(--sage-dark); }
+  .vc2 .vc-sub, .vc4 .vc-sub { color: rgba(255,255,255,0.8); }
+
+  .floating-badge {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: #fff; padding: 0.75rem 1rem;
+    border-radius: var(--radius); box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    font-size: 0.8rem; font-weight: 500; color: var(--sage-dark);
+    display: flex; align-items: center; gap: 0.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+  .fb-dot { width: 8px; height: 8px; background: #5cb85c; border-radius: 50%; }
+
+  /* SERVICES */
+  section { padding: 100px 5%; }
+  .section-tag {
+    font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--sage); font-weight: 500; margin-bottom: 0.75rem;
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15; margin-bottom: 1rem;
+  }
+  h2 em { color: var(--sage); font-style: italic; }
+  .section-sub { font-size: 1rem; color: var(--muted); max-width: 520px; margin-bottom: 3.5rem; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .service-card {
+    background: #fff; border-radius: 20px;
+    padding: 2rem; border: 1px solid var(--border);
+    transition: all 0.25s; cursor: default;
+    position: relative; overflow: hidden;
+  }
+  .service-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 3px; background: var(--sage);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 52px; height: 52px; background: var(--sage-light);
+    border-radius: 14px; display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; margin-bottom: 1.25rem;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--charcoal);
+  }
+  .service-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .service-price {
+    margin-top: 1.25rem; font-weight: 500; color: var(--sage-dark);
+    font-size: 0.9rem; display: flex; align-items: center; gap: 0.4rem;
+  }
+  .service-price::before { content: '→'; color: var(--gold); }
+
+  /* ESTIMATOR */
+  .estimator-section {
+    background: var(--sage-dark);
+    color: #fff; border-radius: 32px;
+    margin: 0 5% 80px;
+    padding: 60px;
+    position: relative; overflow: hidden;
+  }
+  .estimator-section::before {
+    content: '✦';
+    position: absolute; top: -40px; right: 60px;
+    font-size: 12rem; opacity: 0.04; color: #fff;
+    font-family: serif; pointer-events: none;
+  }
+  .estimator-layout {
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    gap: 60px; align-items: start;
+  }
+  .estimator-section h2 { color: #fff; }
+  .estimator-section h2 em { color: var(--gold); }
+  .estimator-section .section-tag { color: rgba(255,255,255,0.6); }
+  .estimator-section .section-sub { color: rgba(255,255,255,0.7); margin-bottom: 0; }
+
+  .estimator-widget {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px; padding: 2rem;
+  }
+  .est-field { margin-bottom: 1.25rem; }
+  .est-label {
+    display: block; font-size: 0.8rem; font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.65); margin-bottom: 0.6rem;
+  }
+  .est-select, .est-input {
+    width: 100%; background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #fff; border-radius: 10px;
+    padding: 0.75rem 1rem; font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem; outline: none; appearance: none;
+    transition: border-color 0.2s;
+  }
+  .est-select:focus, .est-input:focus { border-color: var(--gold); }
+  .est-select option { background: var(--sage-dark); color: #fff; }
+  .est-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .checkbox-group { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+  .check-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    cursor: pointer; font-size: 0.875rem;
+    color: rgba(255,255,255,0.8); padding: 0.5rem;
+    border-radius: 8px; border: 1px solid transparent;
+    transition: all 0.15s;
+  }
+  .check-item:hover { background: rgba(255,255,255,0.07); }
+  .check-item input[type="checkbox"] {
+    width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer;
+  }
+
+  .est-result {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    border-radius: 14px; padding: 1.5rem;
+    margin-top: 1.5rem; text-align: center;
+  }
+  .est-result-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold); margin-bottom: 0.5rem; }
+  .est-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; color: #fff; font-weight: 700; line-height: 1;
+  }
+  .est-price-note { font-size: 0.8rem; color: rgba(255,255,255,0.55); margin-top: 0.4rem; }
+  .est-breakdown {
+    margin-top: 1rem; font-size: 0.8rem;
+    color: rgba(255,255,255,0.6); text-align: left;
+    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;
+  }
+  .bd-line { display: flex; justify-content: space-between; padding: 3px 0; }
+
+  .btn-book {
+    width: 100%; background: var(--gold); color: var(--charcoal);
+    border: none; border-radius: 50px; padding: 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 500;
+    cursor: pointer; margin-top: 1rem; transition: all 0.2s;
+  }
+  .btn-book:hover { background: #d4b05e; transform: translateY(-1px); }
+
+  /* PROCESS */
+  .process-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+    counter-reset: step;
+  }
+  .process-step {
+    position: relative; padding-top: 1rem;
+  }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; color: var(--sage-light);
+    font-weight: 700; line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .step-title { font-weight: 500; margin-bottom: 0.5rem; font-size: 1rem; }
+  .step-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .process-step:not(:last-child)::after {
+    content: '→';
+    position: absolute; top: 2.5rem; right: -1rem;
+    color: var(--sage-light); font-size: 1.5rem;
+  }
+
+  /* TESTIMONIALS */
+  .reviews-section { background: var(--warm-white); }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .review-card {
+    background: #fff; border-radius: 18px;
+    border: 1px solid var(--border); padding: 1.75rem;
+    transition: transform 0.2s;
+  }
+  .review-card:hover { transform: translateY(-3px); }
+  .stars { color: var(--gold); font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 1rem; }
+  .review-text { font-size: 0.925rem; color: var(--charcoal); line-height: 1.7; margin-bottom: 1.25rem; font-style: italic; }
+  .reviewer { display: flex; align-items: center; gap: 0.75rem; }
+  .reviewer-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--sage-light); color: var(--sage-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 500; font-size: 0.8rem;
+  }
+  .reviewer-name { font-weight: 500; font-size: 0.875rem; }
+  .reviewer-loc { font-size: 0.75rem; color: var(--muted); }
+
+  /* CTA BANNER */
+  .cta-banner {
+    background: var(--gold-light); border-radius: 24px;
+    margin: 0 5% 80px;
+    padding: 60px 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 2rem; flex-wrap: wrap;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .cta-banner h2 { margin-bottom: 0.5rem; max-width: 500px; }
+  .cta-banner p { color: var(--muted); }
+
+  /* FOOTER */
+  footer {
+    background: var(--charcoal); color: rgba(255,255,255,0.7);
+    padding: 60px 5% 40px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: #fff; margin-bottom: 1rem; display: block;
+  }
+  .footer-logo span { color: var(--gold); font-style: italic; }
+  .footer-tagline { font-size: 0.875rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .footer-contact { font-size: 0.875rem; }
+  .footer-contact p { margin-bottom: 0.4rem; }
+  .footer-contact a { color: var(--gold); text-decoration: none; }
+  .footer-heading { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 0.5rem; }
+  .footer-links a { text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.875rem; transition: color 0.2s; }
+  .footer-links a:hover { color: #fff; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem; font-size: 0.8rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * { animation: fadeUp 0.6s ease both; }
+  .hero-text > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-text > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-text > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-text > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-text > *:nth-child(5) { animation-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 100px; }
+    .hero-visual { min-height: 300px; }
+    .hero-visual-inner { min-height: 300px; }
+    .estimator-layout { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr 1fr; }
+    .process-step::after { display: none; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 60px 5%; }
+    .estimator-section { margin: 0 4% 60px; padding: 2rem 1.5rem; }
+    .cta-banner { margin: 0 4% 60px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .process-grid { grid-template-columns: 1fr; }
+    .est-row { grid-template-columns: 1fr; }
+    .checkbox-group { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#" class="nav-logo">Maria's <span>Cleaning Co.</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#estimator">Pricing</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact" class="nav-cta">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <div class="hero-badge">Serving Dallas & DFW Since 2015</div>
+    <h1>Your Home, <em>Sparkling</em><br>Clean — Guaranteed.</h1>
+    <p class="hero-sub">Maria and her professional team bring warmth, care, and an obsessive eye for detail to every home in Dallas. Trusted by 500+ happy families.</p>
+    <div class="hero-actions">
+      <a href="#estimator" class="btn-primary">Get a Free Estimate</a>
+      <a href="#services" class="btn-outline">View Services</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Happy Clients</div>
+      </div>
+      <div>
+        <div class="stat-num">9 yrs</div>
+        <div class="stat-label">In Business</div>
+      </div>
+      <div>
+        <div class="stat-num">4.9★</div>
+        <div class="stat-label">Avg Rating</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="floating-badge">
+      <div class="fb-dot"></div>
+      Available This Week
+    </div>
+    <div class="hero-visual-inner">
+      <div class="visual-card vc1">
+        <span class="vc-icon">🧹</span>
+        <div class="vc-label">Standard Clean</div>
+        <div class="vc-sub">Weekly & bi-weekly</div>
+      </div>
+      <div class="visual-card vc2">
+        <span class="vc-icon">✨</span>
+        <div class="vc-label">Deep Clean</div>
+        <div class="vc-sub">Top-to-bottom detail</div>
+      </div>
+      <div class="visual-card vc3">
+        <span class="vc-icon">🏠</span>
+        <div class="vc-label">Move In/Out</div>
+        <div class="vc-sub">Complete turnover</div>
+      </div>
+      <div class="visual-card vc4">
+        <span class="vc-icon">🌿</span>
+        <div class="vc-label">Eco-Friendly</div>
+        <div class="vc-sub">Green products only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-tag">What We Offer</div>
+  <h2>Services Tailored<br>to <em>Your Home</em></h2>
+  <p class="section-sub">Every clean is customized to your space, your preferences, and your schedule. No cookie-cutter packages.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🧹</div>
+      <div class="service-name">Standard Cleaning</div>
+      <div class="service-desc">Regular maintenance cleaning covering all living areas, bedrooms, bathrooms, and kitchen. Perfect for weekly or bi-weekly upkeep.</div>
+      <div class="service-price">Starting at $120</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">✨</div>
+      <div class="service-name">Deep Cleaning</div>
+      <div class="service-desc">Comprehensive top-to-bottom cleaning including baseboards, inside appliances, window sills, and hard-to-reach areas.</div>
+      <div class="service-price">Starting at $220</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <div class="service-name">Move-In / Move-Out</div>
+      <div class="service-desc">Leave your old place spotless or welcome yourself into a fresh start. Includes all surfaces, closets, and fixtures.</div>
+      <div class="service-price">Starting at $280</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🪟</div>
+      <div class="service-name">Post-Construction</div>
+      <div class="service-desc">Specialized removal of dust, debris, and construction residue. We handle new builds and major renovations with care.</div>
+      <div class="service-price">Starting at $350</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏢</div>
+      <div class="service-name">Office Cleaning</div>
+      <div class="service-desc">Keep your workspace professional and productive. Flexible scheduling including evenings and weekends for minimal disruption.</div>
+      <div class="service-price">Starting at $150</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌿</div>
+      <div class="service-name">Eco-Friendly Clean</div>
+      <div class="service-desc">100% non-toxic, pet and child safe products. Same thorough clean, zero harsh chemicals. Great for sensitive households.</div>
+      <div class="service-price">Starting at $140</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE ESTIMATOR -->
+<div class="estimator-section" id="estimator">
+  <div class="estimator-layout">
+    <div>
+      <div class="section-tag">Instant Estimate</div>
+      <h2>Price<br><em>Estimator</em></h2>
+      <p class="section-sub" style="margin-top:1rem;">Get an instant estimate in seconds. No commitment needed — just real numbers for your home in Dallas.</p>
+      <div style="margin-top:2.5rem;">
+        <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.7;">
+          Final pricing confirmed after a quick walkthrough or phone consult. Most estimates are accurate within 10%.
+        </p>
+        <p style="font-size:0.875rem; color:rgba(255,255,255,0.6); line-height:1.7; margin-top:1rem;">
+          📍 Serving all Dallas neighborhoods including Uptown, Oak Cliff, Lake Highlands, Plano, Frisco, and more.
+        </p>
+      </div>
+    </div>
+    <div>
+      <div class="estimator-widget">
+        <div class="est-field">
+          <label class="est-label">Service Type</label>
+          <select class="est-select" id="serviceType" onchange="calcEstimate()">
+            <option value="standard">Standard Cleaning</option>
+            <option value="deep">Deep Cleaning</option>
+            <option value="moveinout">Move-In / Move-Out</option>
+            <option value="postconstruction">Post-Construction</option>
+            <option value="office">Office Cleaning</option>
+            <option value="eco">Eco-Friendly Clean</option>
+          </select>
+        </div>
+        <div class="est-row">
+          <div class="est-field">
+            <label class="est-label">Bedrooms</label>
+            <select class="est-select" id="bedrooms" onchange="calcEstimate()">
+              <option value="1">1 Bedroom</option>
+              <option value="2" selected>2 Bedrooms</option>
+              <option value="3">3 Bedrooms</option>
+              <option value="4">4 Bedrooms</option>
+              <option value="5">5+ Bedrooms</option>
+            </select>
+          </div>
+          <div class="est-field">
+            <label class="est-label">Bathrooms</label>
+            <select class="est-select" id="bathrooms" onchange="calcEstimate()">
+              <option value="1">1 Bath</option>
+              <option value="2" selected>2 Baths</option>
+              <option value="3">3 Baths</option>
+              <option value="4">4+ Baths</option>
+            </select>
+          </div>
+        </div>
+        <div class="est-field">
+          <label class="est-label">Home Size (sq ft)</label>
+          <select class="est-select" id="sqft" onchange="calcEstimate()">
+            <option value="800">Under 1,000 sq ft</option>
+            <option value="1200" selected>1,000 – 1,500 sq ft</option>
+            <option value="1750">1,500 – 2,000 sq ft</option>
+            <option value="2500">2,000 – 3,000 sq ft</option>
+            <option value="3500">3,000+ sq ft</option>
+          </select>
+        </div>
+        <div class="est-field">
+          <label class="est-label">Add-Ons (select all that apply)</label>
+          <div class="checkbox-group">
+            <label class="check-item">
+              <input type="checkbox" value="25" onchange="calcEstimate()"> Inside oven
+            </label>
+            <label class="check-item">
+              <input type="checkbox" value="20" onchange="calcEstimate()"> Inside fridge
+            </label>
+            <label class="check-item">
+              <input type="checkbox" value="30" onchange="calcEstimate()"> Windows (interior)
+            </label>
+            <label class="check-item">
+              <input type="checkbox" value="35" onchange="calcEstimate()"> Laundry & folding
+            </label>
+            <label class="check-item">
+              <input type="checkbox" value="15" onchange="calcEstimate()"> Pet hair treatment
+            </label>
+            <label class="check-item">
+              <input type="checkbox" value="40" onchange="calcEstimate()"> Garage cleaning
+            </label>
+          </div>
+        </div>
+        <div class="est-field">
+          <label class="est-label">Frequency</label>
+          <select class="est-select" id="frequency" onchange="calcEstimate()">
+            <option value="1">One-time</option>
+            <option value="0.9">Bi-weekly (10% off)</option>
+            <option value="0.85" selected>Weekly (15% off)</option>
+          </select>
+        </div>
+        <div class="est-result">
+          <div class="est-result-label">Estimated Total</div>
+          <div class="est-price" id="estimatePrice">$185</div>
+          <div class="est-price-note">per visit · Dallas, TX</div>
+          <div class="est-breakdown" id="breakdown"></div>
+        </div>
+        <button class="btn-book" onclick="bookNow()">📅 Book This Clean →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-tag">Simple & Transparent</div>
+  <h2>Booked, Cleaned,<br><em>Impressed</em></h2>
+  <p class="section-sub">Four easy steps from inquiry to a spotless home.</p>
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-title">Get an Estimate</div>
+      <div class="step-desc">Use our instant estimator or call us directly. We'll confirm pricing before anything begins.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-title">Schedule Your Clean</div>
+      <div class="step-desc">Pick a date and time that works for you. Morning, afternoon — even same-week availability.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-title">We Show Up & Clean</div>
+      <div class="step-desc">Maria's team arrives on time, fully equipped. You don't need to be home — a lockbox or spare key works great.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-title">Enjoy Your Space</div>
+      <div class="step-desc">Come home to a spotless, fresh-smelling house. Not satisfied? We'll re-clean for free.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="reviews-section" id="reviews">
+  <div class="section-tag">What Clients Say</div>
+  <h2>Trusted by Hundreds of<br><em>Dallas Families</em></h2>
+  <p class="section-sub" style="margin-bottom:3rem;">Don't take our word for it — here's what real customers in Dallas have to say.</p>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Maria's team has been cleaning our home in Uptown for two years. Every single visit, they leave it better than expected. Worth every penny."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">JR</div>
+        <div>
+          <div class="reviewer-name">Jessica R.</div>
+          <div class="reviewer-loc">Uptown Dallas</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"Used them for a move-out clean and got my full deposit back! The apartment was spotless. Easy to book, super professional, and very fairly priced."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">MT</div>
+        <div>
+          <div class="reviewer-name">Marcus T.</div>
+          <div class="reviewer-loc">Lake Highlands</div>
+        </div>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <div class="review-text">"I specifically requested the eco-friendly service for my toddler and two cats. Maria uses amazing products — my floors have never looked this clean and I have zero concerns."</div>
+      <div class="reviewer">
+        <div class="reviewer-avatar">SL</div>
+        <div>
+          <div class="reviewer-name">Sofia L.</div>
+          <div class="reviewer-loc">Oak Cliff</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner" id="contact">
+  <div>
+    <h2>Ready for a <em>Spotless</em> Home?</h2>
+    <p>Call or text Maria directly. Available Mon–Sat, 7am–7pm. Same-week bookings welcome.</p>
+  </div>
+  <div style="display:flex; gap:1rem; flex-wrap:wrap; align-items:center;">
+    <a href="tel:+12145550142" class="btn-primary" style="text-decoration:none; display:inline-block;">📞 (214) 555-0142</a>
+    <a href="sms:+12145550142" class="btn-outline" style="text-decoration:none; display:inline-block;">💬 Text Us</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <span class="footer-logo">Maria's <span>Cleaning Co.</span></span>
+      <p class="footer-tagline">Bringing warmth and meticulous care to Dallas homes since 2015. Insured, bonded, and backed by a 100% satisfaction guarantee.</p>
+      <div class="footer-contact">
+        <p>📍 Dallas, Texas (& DFW Metro)</p>
+        <p>📞 <a href="tel:+12145550142">(214) 555-0142</a></p>
+        <p>✉️ <a href="mailto:maria@mariascleaningco.com">maria@mariascleaningco.com</a></p>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <ul class="footer-links">
+        <li><a href="#services">Standard Cleaning</a></li>
+        <li><a href="#services">Deep Cleaning</a></li>
+        <li><a href="#services">Move-In / Move-Out</a></li>
+        <li><a href="#services">Post-Construction</a></li>
+        <li><a href="#services">Office Cleaning</a></li>
+        <li><a href="#services">Eco-Friendly</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Areas Served</div>
+      <ul class="footer-links">
+        <li><a href="#">Uptown Dallas</a></li>
+        <li><a href="#">Oak Cliff</a></li>
+        <li><a href="#">Lake Highlands</a></li>
+        <li><a href="#">Plano</a></li>
+        <li><a href="#">Frisco</a></li>
+        <li><a href="#">Irving</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Company</div>
+      <ul class="footer-links">
+        <li><a href="#">About Maria</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#process">How It Works</a></li>
+        <li><a href="#estimator">Get a Quote</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Maria's Cleaning Co. · Dallas, TX · All rights reserved.</span>
+    <span>Insured & Bonded · 100% Satisfaction Guarantee</span>
+  </div>
+</footer>
+
+<script>
+const basePrices = {
+  standard: 120,
+  deep: 220,
+  moveinout: 280,
+  postconstruction: 350,
+  office: 150,
+  eco: 140
+};
+
+const serviceLabels = {
+  standard: 'Standard Cleaning',
+  deep: 'Deep Cleaning',
+  moveinout: 'Move-In / Move-Out',
+  postconstruction: 'Post-Construction',
+  office: 'Office Cleaning',
+  eco: 'Eco-Friendly Clean'
+};
+
+const freqLabels = {
+  '1': 'One-time',
+  '0.9': 'Bi-weekly',
+  '0.85': 'Weekly'
+};
+
+function calcEstimate() {
+  const service = document.getElementById('serviceType').value;
+  const beds = parseInt(document.getElementById('bedrooms').value);
+  const baths = parseInt(document.getElementById('bathrooms').value);
+  const sqft = parseInt(document.getElementById('sqft').value);
+  const freq = parseFloat(document.getElementById('frequency').value);
+
+  let base = basePrices[service];
+  let roomAdj = (beds - 2) * 18 + (baths - 2) * 22;
+  let sizeAdj = (sqft - 1200) * 0.025;
+  let addons = 0;
+  const addonLines = [];
+
+  document.querySelectorAll('.checkbox-group input[type="checkbox"]').forEach(cb => {
+    if (cb.checked) {
+      const val = parseInt(cb.value);
+      addons += val;
+      addonLines.push({ name: cb.parentElement.textContent.trim(), price: val });
+    }
+  });
+
+  let subtotal = base + roomAdj + sizeAdj + addons;
+  if (subtotal < base) subtotal = base;
+  let total = subtotal * freq;
+  if (total < 80) total = 80;
+
+  const freqDiscount = freq < 1 ? Math.round(subtotal - total) : 0;
+
+  document.getElementById('estimatePrice').textContent = '$' + Math.round(total);
+
+  let bdHtml = '<div class="bd-line"><span>' + serviceLabels[service] + '</span><span>$' + base + '</span></div>';
+  if (roomAdj !== 0) bdHtml += '<div class="bd-line"><span>Room adjustment</span><span>' + (roomAdj >= 0 ? '+' : '') + '$' + Math.round(roomAdj) + '</span></div>';
+  if (sizeAdj > 1) bdHtml += '<div class="bd-line"><span>Size adjustment</span><span>+$' + Math.round(sizeAdj) + '</span></div>';
+  addonLines.forEach(a => {
+    bdHtml += '<div class="bd-line"><span>' + a.name + '</span><span>+$' + a.price + '</span></div>';
+  });
+  if (freqDiscount > 0) bdHtml += '<div class="bd-line" style="color:rgba(201,168,76,0.9)"><span>' + freqLabels[String(freq)] + ' discount</span><span>−$' + freqDiscount + '</span></div>';
+
+  document.getElementById('breakdown').innerHTML = bdHtml;
+}
+
+function bookNow() {
+  const price = document.getElementById('estimatePrice').textContent;
+  const service = serviceLabels[document.getElementById('serviceType').value];
+  alert('Thanks for your interest!\n\nEstimated: ' + price + ' for ' + service + '\n\nPlease call or text Maria at (214) 555-0142 to confirm your booking. We look forward to cleaning your home!');
+}
+
+calcEstimate();
+</script>
+</body>
+</html>
